@@ -1,0 +1,49 @@
+<template>
+  <div class="slds-grid">
+    <!--parent block-->
+    <div class="slds-col parentDiv">
+      <!--form block-->
+      <lightning-input
+        value={sVal}
+        name="Name"
+        label="Account Name"
+        onchange={updateSeachKey}
+      ></lightning-input>
+      <lightning-input
+        value={rLimit}
+        name="Record Number"
+        label="Records"
+        onchange={updateLimitKey}
+      ></lightning-input
+      ><br />
+      <lightning-button
+        label="Search"
+        onclick={handleSearch}
+      ></lightning-button>
+    </div>
+    <div class="slds-col parentDiv">
+      <!--Filter block-->
+      <div class="slds-grid">
+        <lightning-input
+          type="text"
+          value={fVal}
+          label="Filter Text"
+          onchange={filterSearchKey}
+        ></lightning-input>
+      </div>
+      <span>
+        <template if:true={filterAccRecords}>
+          <template for:each={filterAccRecords} for:item="account">
+            <c-display-filtered-account-record
+              key={account.Id}
+              account-records={account}
+            ></c-display-filtered-account-record>
+          </template>
+</template>
+<template if:true={error}>
+          {error}
+        </template>
+</span>
+</div>
+</div>
+</template>
